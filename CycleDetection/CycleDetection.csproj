@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CycleDetector.cs" />
-    <Compile Include="DepGraph.cs" />
+    <Compile Include="Graph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vertex.cs" />
   </ItemGroup>

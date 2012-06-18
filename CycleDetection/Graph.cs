@@ -5,14 +5,14 @@ using System.Text;
 
 namespace CycleDetection
 {
-    public class DepGraph
+    public class Graph
     {
-        public DepGraph()
+        public Graph()
         {
             this.Vertices = new List<Vertex>();
         }
 
-        public DepGraph(IEnumerable<Vertex> vertices)
+        public Graph(IEnumerable<Vertex> vertices)
         {
             this.Vertices = vertices.ToList();
         }

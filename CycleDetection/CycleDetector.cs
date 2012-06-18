@@ -16,7 +16,7 @@ namespace CycleDetection
         private Stack<Vertex> stack;
         private int index;
 
-        public List<List<Vertex>> DetectCycle(DepGraph g)
+        public List<List<Vertex>> DetectCycle(Graph g)
         {
             stronglyConnectedComponents = new List<List<Vertex>>();
             index = 0;
