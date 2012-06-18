@@ -12,8 +12,8 @@ namespace CycleDetection.Tests
         [TestMethod]
         public void EmptyGraph()
         {
-            var graph = new Graph();
-            var detector = new CycleDetector();
+            var graph = new Graph<int>();
+            var detector = new CycleDetector<int>();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(0, cycles.Count);
         }
@@ -21,9 +21,9 @@ namespace CycleDetection.Tests
         [TestMethod]
         public void SingleVertex()
         {
-            var graph = new Graph();
+            var graph = new Graph<int>();
             graph.Vertices.Add(new Vertex<int>(1));
-            var detector = new CycleDetector();
+            var detector = new CycleDetector<int>();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(1, cycles.Count);
             Assert.IsTrue(cycles.All(c => c.Count == 1));
@@ -32,13 +32,13 @@ namespace CycleDetection.Tests
         [TestMethod]
         public void Linear2()
         {
-            var graph = new Graph();
+            var graph = new Graph<int>();
             var vA = new Vertex<int>(1);
             var vB = new Vertex<int>(2);
             vA.Dependencies.Add(vB);
             graph.Vertices.Add(vA);
             graph.Vertices.Add(vB);
-            var detector = new CycleDetector();
+            var detector = new CycleDetector<int>();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(2, cycles.Count);
             Assert.IsTrue(cycles.All(c => c.Count == 1));
@@ -47,7 +47,7 @@ namespace CycleDetection.Tests
         [TestMethod]
         public void Linear3()
         {
-            var graph = new Graph();
+            var graph = new Graph<int>();
             var vA = new Vertex<int>(1);
             var vB = new Vertex<int>(2);
             var vC = new Vertex<int>(3);
@@ -56,7 +56,7 @@ namespace CycleDetection.Tests
             graph.Vertices.Add(vA);
             graph.Vertices.Add(vB);
             graph.Vertices.Add(vC);
-            var detector = new CycleDetector();
+            var detector = new CycleDetector<int>();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(3, cycles.Count);
             Assert.IsTrue(cycles.All(c => c.Count == 1));
@@ -65,14 +65,14 @@ namespace CycleDetection.Tests
         [TestMethod]
         public void Cycle2()
         {
-            var graph = new Graph();
+            var graph = new Graph<int>();
             var vA = new Vertex<int>(1);
             var vB = new Vertex<int>(2);
             vA.Dependencies.Add(vB);
             vB.Dependencies.Add(vA);
             graph.Vertices.Add(vA);
             graph.Vertices.Add(vB);
-            var detector = new CycleDetector();
+            var detector = new CycleDetector<int>();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(1, cycles.Count);
             Assert.IsTrue(cycles.All(c => c.Count == 2));
@@ -81,7 +81,7 @@ namespace CycleDetection.Tests
         [TestMethod]
         public void Cycle3()
         {
-            var graph = new Graph();
+            var graph = new Graph<int>();
             var vA = new Vertex<int>(1);
             var vB = new Vertex<int>(2);
             var vC = new Vertex<int>(3);
@@ -91,7 +91,7 @@ namespace CycleDetection.Tests
             graph.Vertices.Add(vA);
             graph.Vertices.Add(vB);
             graph.Vertices.Add(vC);
-            var detector = new CycleDetector();
+            var detector = new CycleDetector<int>();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(1, cycles.Count);
             Assert.IsTrue(cycles.All(c => c.Count == 3));
@@ -100,7 +100,7 @@ namespace CycleDetection.Tests
         [TestMethod]
         public void TwoIsolated3Cycles()
         {
-            var graph = new Graph();
+            var graph = new Graph<int>();
             var vA1 = new Vertex<int>(1);
             var vB1 = new Vertex<int>(2);
             var vC1 = new Vertex<int>(3);
@@ -121,7 +121,7 @@ namespace CycleDetection.Tests
             graph.Vertices.Add(vB2);
             graph.Vertices.Add(vC2);
 
-            var detector = new CycleDetector();
+            var detector = new CycleDetector<int>();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(2, cycles.Count);
             Assert.IsTrue(cycles.All(c => c.Count == 3));

@@ -10,10 +10,10 @@ namespace CycleDetection
     /// </summary>
     /// <seealso cref="http://en.wikipedia.org/wiki/Tarjan's_strongly_connected_components_algorithm"/>
     /// <seealso cref="http://stackoverflow.com/questions/261573/best-algorithm-for-detecting-cycles-in-a-directed-graph"/>
-    public class CycleDetector
+    public class CycleDetector<T>
     {
-        private List<List<Vertex>> stronglyConnectedComponents;
-        private Stack<Vertex> stack;
+        private List<List<Vertex<T>>> stronglyConnectedComponents;
+        private Stack<Vertex<T>> stack;
         private int index;
 
         /// <summary>
@@ -21,12 +21,12 @@ namespace CycleDetection
         /// </summary>
         /// <param name="graph">Graph to detect cycles within.</param>
         /// <returns>Set of strongly connected components (sets of vertices)</returns>
-        public List<List<Vertex>> DetectCycle(Graph graph)
+        public List<List<Vertex<T>>> DetectCycle(Graph<T> graph)
         {
-            stronglyConnectedComponents = new List<List<Vertex>>();
+            stronglyConnectedComponents = new List<List<Vertex<T>>>();
             index = 0;
-            stack = new Stack<Vertex>();
-            foreach (Vertex v in graph.Vertices)
+            stack = new Stack<Vertex<T>>();
+            foreach (var v in graph.Vertices)
             {
                 if (v.Index < 0)
                 {
@@ -36,14 +36,14 @@ namespace CycleDetection
             return stronglyConnectedComponents;
         }
 
-        private void StrongConnect(Vertex v)
+        private void StrongConnect(Vertex<T> v)
         {
             v.Index = index;
             v.LowLink = index;
             index++;
             stack.Push(v);
 
-            foreach (Vertex w in v.Dependencies)
+            foreach (Vertex<T> w in v.Dependencies)
             {
                 if (w.Index < 0)
                 {
@@ -58,8 +58,8 @@ namespace CycleDetection
 
             if (v.LowLink == v.Index)
             {
-                List<Vertex> scc = new List<Vertex>();
-                Vertex w;
+                List<Vertex<T>> scc = new List<Vertex<T>>();
+                Vertex<T> w;
                 do
                 {
                     w = stack.Pop();

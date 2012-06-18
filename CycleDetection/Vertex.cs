@@ -5,51 +5,38 @@ using System.Text;
 
 namespace CycleDetection
 {
-    public abstract class Vertex
+    public class Vertex<T>
     {
         public Vertex()
         {
-            this.Dependencies = new List<Vertex>();
             this.Index = -1;
+            this.Dependencies = new List<Vertex<T>>();
         }
 
-        public Vertex(IEnumerable<Vertex> dependencies)
+        public Vertex(T value)
+            : this()
         {
-            this.Dependencies = dependencies.ToList();
+            this.Value = value;
+        }
+
+        public Vertex(IEnumerable<Vertex<T>> dependencies)
+        {
             this.Index = -1;
+            this.Dependencies = dependencies.ToList();
+        }
+
+        public Vertex(T value, IEnumerable<Vertex<T>> dependencies)
+            : this(dependencies)
+        {
+            this.Value = value;
         }
 
         internal int Index { get; set; }
 
         internal int LowLink { get; set; }
 
-        public ICollection<Vertex> Dependencies { get; set; }
-    }
-
-    public class Vertex<T> : Vertex
-    {
-        public Vertex()
-            : base()
-        {
-        }
-
-        public Vertex(T value)
-            : base()
-        {
-            this.Value = value;
-        }
-
-        public Vertex(IEnumerable<Vertex> dependencies)
-            : base(dependencies)
-        {
-        }
-
-        public Vertex(T value, IEnumerable<Vertex> dependencies)
-            : base(dependencies)
-        {
-            this.Value = value;
-        }
-
         public T Value { get; set; }
+
+        public ICollection<Vertex<T>> Dependencies { get; set; }
     }
 }
