@@ -16,12 +16,17 @@ namespace CycleDetection
         private Stack<Vertex> stack;
         private int index;
 
-        public List<List<Vertex>> DetectCycle(Graph g)
+        /// <summary>
+        /// Calculates the sets of strongly connected vertices.
+        /// </summary>
+        /// <param name="graph">Graph to detect cycles within.</param>
+        /// <returns>Set of strongly connected components (sets of vertices)</returns>
+        public List<List<Vertex>> DetectCycle(Graph graph)
         {
             stronglyConnectedComponents = new List<List<Vertex>>();
             index = 0;
             stack = new Stack<Vertex>();
-            foreach (Vertex v in g.Vertices)
+            foreach (Vertex v in graph.Vertices)
             {
                 if (v.Index < 0)
                 {
