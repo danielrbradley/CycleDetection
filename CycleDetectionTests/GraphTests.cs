@@ -26,6 +26,7 @@ namespace CycleDetection.Tests
             var detector = new CycleDetector();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(1, cycles.Count);
+            Assert.IsTrue(cycles.All(c => c.Count == 1));
         }
 
         [TestMethod]
@@ -40,6 +41,7 @@ namespace CycleDetection.Tests
             var detector = new CycleDetector();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(2, cycles.Count);
+            Assert.IsTrue(cycles.All(c => c.Count == 1));
         }
 
         [TestMethod]
@@ -57,6 +59,7 @@ namespace CycleDetection.Tests
             var detector = new CycleDetector();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(3, cycles.Count);
+            Assert.IsTrue(cycles.All(c => c.Count == 1));
         }
 
         [TestMethod]
@@ -72,6 +75,7 @@ namespace CycleDetection.Tests
             var detector = new CycleDetector();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(1, cycles.Count);
+            Assert.IsTrue(cycles.All(c => c.Count == 2));
         }
 
         [TestMethod]
@@ -90,6 +94,7 @@ namespace CycleDetection.Tests
             var detector = new CycleDetector();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(1, cycles.Count);
+            Assert.IsTrue(cycles.All(c => c.Count == 3));
         }
 
         [TestMethod]
@@ -119,6 +124,7 @@ namespace CycleDetection.Tests
             var detector = new CycleDetector();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(2, cycles.Count);
+            Assert.IsTrue(cycles.All(c => c.Count == 3));
         }
     }
 }
