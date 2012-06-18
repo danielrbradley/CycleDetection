@@ -5,7 +5,12 @@ using System.Text;
 
 namespace CycleDetection
 {
-    public class TarjanCycleDetect
+    /// <summary>
+    /// Implementation of the Tarjan stronly connected components algorithm.
+    /// </summary>
+    /// <seealso cref="http://en.wikipedia.org/wiki/Tarjan's_strongly_connected_components_algorithm"/>
+    /// <seealso cref="http://stackoverflow.com/questions/261573/best-algorithm-for-detecting-cycles-in-a-directed-graph"/>
+    public class CycleDetector
     {
         private List<List<Vertex>> stronglyConnectedComponents;
         private Stack<Vertex> stack;
