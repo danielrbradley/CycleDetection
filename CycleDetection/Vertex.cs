@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CycleDetection
 {
-    public class Vertex
+    public abstract class Vertex
     {
         public Vertex()
         {
@@ -24,5 +24,32 @@ namespace CycleDetection
         internal int LowLink { get; set; }
 
         public ICollection<Vertex> Dependencies { get; set; }
+    }
+
+    public class Vertex<T> : Vertex
+    {
+        public Vertex()
+            : base()
+        {
+        }
+
+        public Vertex(T value)
+            : base()
+        {
+            this.Value = value;
+        }
+
+        public Vertex(IEnumerable<Vertex> dependencies)
+            : base(dependencies)
+        {
+        }
+
+        public Vertex(T value, IEnumerable<Vertex> dependencies)
+            : base(dependencies)
+        {
+            this.Value = value;
+        }
+
+        public T Value { get; set; }
     }
 }

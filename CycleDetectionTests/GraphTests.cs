@@ -22,7 +22,7 @@ namespace CycleDetection.Tests
         public void SingleVertex()
         {
             var graph = new Graph();
-            graph.Vertices.Add(new Vertex());
+            graph.Vertices.Add(new Vertex<int>(1));
             var detector = new CycleDetector();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(1, cycles.Count);
@@ -32,8 +32,8 @@ namespace CycleDetection.Tests
         public void Linear2()
         {
             var graph = new Graph();
-            var vA = new Vertex();
-            var vB = new Vertex();
+            var vA = new Vertex<int>(1);
+            var vB = new Vertex<int>(2);
             vA.Dependencies.Add(vB);
             graph.Vertices.Add(vA);
             graph.Vertices.Add(vB);
@@ -46,9 +46,9 @@ namespace CycleDetection.Tests
         public void Linear3()
         {
             var graph = new Graph();
-            var vA = new Vertex();
-            var vB = new Vertex();
-            var vC = new Vertex();
+            var vA = new Vertex<int>(1);
+            var vB = new Vertex<int>(2);
+            var vC = new Vertex<int>(3);
             vA.Dependencies.Add(vB);
             vB.Dependencies.Add(vC);
             graph.Vertices.Add(vA);
@@ -63,8 +63,8 @@ namespace CycleDetection.Tests
         public void Cycle2()
         {
             var graph = new Graph();
-            var vA = new Vertex();
-            var vB = new Vertex();
+            var vA = new Vertex<int>(1);
+            var vB = new Vertex<int>(2);
             vA.Dependencies.Add(vB);
             vB.Dependencies.Add(vA);
             graph.Vertices.Add(vA);
@@ -78,9 +78,9 @@ namespace CycleDetection.Tests
         public void Cycle3()
         {
             var graph = new Graph();
-            var vA = new Vertex();
-            var vB = new Vertex();
-            var vC = new Vertex();
+            var vA = new Vertex<int>(1);
+            var vB = new Vertex<int>(2);
+            var vC = new Vertex<int>(3);
             vA.Dependencies.Add(vB);
             vB.Dependencies.Add(vC);
             vC.Dependencies.Add(vA);
@@ -96,9 +96,9 @@ namespace CycleDetection.Tests
         public void TwoIsolated3Cycles()
         {
             var graph = new Graph();
-            var vA1 = new Vertex();
-            var vB1 = new Vertex();
-            var vC1 = new Vertex();
+            var vA1 = new Vertex<int>(1);
+            var vB1 = new Vertex<int>(2);
+            var vC1 = new Vertex<int>(3);
             vA1.Dependencies.Add(vB1);
             vB1.Dependencies.Add(vC1);
             vC1.Dependencies.Add(vA1);
@@ -106,9 +106,9 @@ namespace CycleDetection.Tests
             graph.Vertices.Add(vB1);
             graph.Vertices.Add(vC1);
 
-            var vA2 = new Vertex();
-            var vB2 = new Vertex();
-            var vC2 = new Vertex();
+            var vA2 = new Vertex<int>(4);
+            var vB2 = new Vertex<int>(5);
+            var vC2 = new Vertex<int>(6);
             vA2.Dependencies.Add(vB2);
             vB2.Dependencies.Add(vC2);
             vC2.Dependencies.Add(vA2);
