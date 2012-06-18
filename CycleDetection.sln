@@ -5,10 +5,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CycleDetection", "CycleDete
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC797A57-070B-4A85-85C1-E17B369DF7D9}"
 	ProjectSection(SolutionItems) = preProject
+		CycleDetection.vsmdi = CycleDetection.vsmdi
+		Local.testsettings = Local.testsettings
 		README.markdown = README.markdown
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CycleDetectionTests", "CycleDetectionTests\CycleDetectionTests.csproj", "{1D0BC1E5-8226-4283-A224-3043FD17BCB2}"
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = CycleDetection.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -18,6 +26,10 @@ Global
 		{E387991E-EE65-442C-AB2A-4EA35A7EB83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E387991E-EE65-442C-AB2A-4EA35A7EB83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E387991E-EE65-442C-AB2A-4EA35A7EB83B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D0BC1E5-8226-4283-A224-3043FD17BCB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D0BC1E5-8226-4283-A224-3043FD17BCB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D0BC1E5-8226-4283-A224-3043FD17BCB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D0BC1E5-8226-4283-A224-3043FD17BCB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
