@@ -7,41 +7,40 @@ namespace CycleDetection
 {
     public class TarjanCycleDetect
     {
-        private static List<List<Vertex>> StronglyConnectedComponents;
-        private static Stack<Vertex> S;
-        private static int index;
-        private static DepGraph dg;
-        public static List<List<Vertex>> DetectCycle(DepGraph g)
+        private List<List<Vertex>> stronglyConnectedComponents;
+        private Stack<Vertex> stack;
+        private int index;
+
+        public List<List<Vertex>> DetectCycle(DepGraph g)
         {
-            StronglyConnectedComponents = new List<List<Vertex>>();
+            stronglyConnectedComponents = new List<List<Vertex>>();
             index = 0;
-            S = new Stack<Vertex>();
-            dg = g;
+            stack = new Stack<Vertex>();
             foreach (Vertex v in g.Vertices)
             {
                 if (v.Index < 0)
                 {
-                    strongconnect(v);
+                    StrongConnect(v);
                 }
             }
-            return StronglyConnectedComponents;
+            return stronglyConnectedComponents;
         }
 
-        private static void strongconnect(Vertex v)
+        private void StrongConnect(Vertex v)
         {
             v.Index = index;
             v.LowLink = index;
             index++;
-            S.Push(v);
+            stack.Push(v);
 
             foreach (Vertex w in v.Dependencies)
             {
                 if (w.Index < 0)
                 {
-                    strongconnect(w);
+                    StrongConnect(w);
                     v.LowLink = Math.Min(v.LowLink, w.LowLink);
                 }
-                else if (S.Contains(w))
+                else if (stack.Contains(w))
                 {
                     v.LowLink = Math.Min(v.LowLink, w.Index);
                 }
@@ -53,10 +52,10 @@ namespace CycleDetection
                 Vertex w;
                 do
                 {
-                    w = S.Pop();
+                    w = stack.Pop();
                     scc.Add(w);
                 } while (v != w);
-                StronglyConnectedComponents.Add(scc);
+                stronglyConnectedComponents.Add(scc);
             }
 
         }
