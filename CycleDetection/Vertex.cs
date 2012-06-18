@@ -7,10 +7,20 @@ namespace CycleDetection
 {
     public class Vertex
     {
+        public Vertex()
+        {
+            this.Dependencies = new List<Vertex>();
+        }
+
+        public Vertex(IEnumerable<Vertex> dependencies)
+        {
+            this.Dependencies = dependencies.ToList();
+        }
+
         public int Index { get; set; }
 
         public int LowLink { get; set; }
 
-        public IEnumerable<Vertex> Dependencies { get; set; }
+        public ICollection<Vertex> Dependencies { get; set; }
     }
 }

@@ -7,6 +7,16 @@ namespace CycleDetection
 {
     public class DepGraph
     {
-        public IEnumerable<Vertex> Vertices { get; set; }
+        public DepGraph()
+        {
+            this.Vertices = new List<Vertex>();
+        }
+
+        public DepGraph(IEnumerable<Vertex> vertices)
+        {
+            this.Vertices = vertices.ToList();
+        }
+
+        public ICollection<Vertex> Vertices { get; set; }
     }
 }
