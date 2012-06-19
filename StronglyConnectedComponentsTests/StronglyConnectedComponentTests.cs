@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace StronglyConnectedComponents.Tests
 {
     [TestClass]
-    public class GraphTests
+    public class StronglyConnectedComponentTests
     {
         [TestMethod]
         public void EmptyGraph()
