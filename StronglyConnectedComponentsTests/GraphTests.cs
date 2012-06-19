@@ -18,6 +18,7 @@ namespace StronglyConnectedComponents.Tests
             Assert.AreEqual(0, cycles.Count);
         }
 
+        // A
         [TestMethod]
         public void SingleVertex()
         {
@@ -30,6 +31,7 @@ namespace StronglyConnectedComponents.Tests
             Assert.AreEqual(0, components.Cycles().Count());
         }
 
+        // A→B
         [TestMethod]
         public void Linear2()
         {
@@ -46,6 +48,7 @@ namespace StronglyConnectedComponents.Tests
             Assert.AreEqual(0, components.Cycles().Count());
         }
 
+        // A→B→C
         [TestMethod]
         public void Linear3()
         {
@@ -65,6 +68,7 @@ namespace StronglyConnectedComponents.Tests
             Assert.AreEqual(0, components.Cycles().Count());
         }
 
+        // A↔B
         [TestMethod]
         public void Cycle2()
         {
@@ -83,6 +87,9 @@ namespace StronglyConnectedComponents.Tests
             Assert.AreEqual(2, components.First().Count);
         }
 
+        // A→B
+        // ↑ ↓
+        // └─C
         [TestMethod]
         public void Cycle3()
         {
@@ -104,29 +111,32 @@ namespace StronglyConnectedComponents.Tests
             Assert.AreEqual(3, components.Single().Count);
         }
 
+        // A→B   D→E
+        // ↑ ↓   ↑ ↓
+        // └─C   └─F
         [TestMethod]
         public void TwoIsolated3Cycles()
         {
             var graph = new List<Vertex<int>>();
-            var vA1 = new Vertex<int>(1);
-            var vB1 = new Vertex<int>(2);
-            var vC1 = new Vertex<int>(3);
-            vA1.Dependencies.Add(vB1);
-            vB1.Dependencies.Add(vC1);
-            vC1.Dependencies.Add(vA1);
-            graph.Add(vA1);
-            graph.Add(vB1);
-            graph.Add(vC1);
+            var vA = new Vertex<int>(1);
+            var vB = new Vertex<int>(2);
+            var vC = new Vertex<int>(3);
+            vA.Dependencies.Add(vB);
+            vB.Dependencies.Add(vC);
+            vC.Dependencies.Add(vA);
+            graph.Add(vA);
+            graph.Add(vB);
+            graph.Add(vC);
 
-            var vA2 = new Vertex<int>(4);
-            var vB2 = new Vertex<int>(5);
-            var vC2 = new Vertex<int>(6);
-            vA2.Dependencies.Add(vB2);
-            vB2.Dependencies.Add(vC2);
-            vC2.Dependencies.Add(vA2);
-            graph.Add(vA2);
-            graph.Add(vB2);
-            graph.Add(vC2);
+            var vD = new Vertex<int>(4);
+            var vE = new Vertex<int>(5);
+            var vF = new Vertex<int>(6);
+            vD.Dependencies.Add(vE);
+            vE.Dependencies.Add(vF);
+            vF.Dependencies.Add(vD);
+            graph.Add(vD);
+            graph.Add(vE);
+            graph.Add(vF);
 
             var detector = new StronglyConnectedComponentFinder<int>();
             var components = detector.DetectCycle(graph);
@@ -136,6 +146,9 @@ namespace StronglyConnectedComponents.Tests
             Assert.IsTrue(components.All(c => c.Count == 3));
         }
 
+        // A→B
+        // ↑ ↓
+        // └─C-→D
         [TestMethod]
         public void Cycle3WithStub()
         {
