@@ -126,5 +126,29 @@ namespace CycleDetection.Tests
             Assert.AreEqual(2, cycles.Count);
             Assert.IsTrue(cycles.All(c => c.Count == 3));
         }
+
+        [TestMethod]
+        public void Cycle3WithStub()
+        {
+            var graph = new Graph<int>();
+            var vA = new Vertex<int>(1);
+            var vB = new Vertex<int>(2);
+            var vC = new Vertex<int>(3);
+            var vD = new Vertex<int>(4);
+            vA.Dependencies.Add(vB);
+            vB.Dependencies.Add(vC);
+            vC.Dependencies.Add(vA);
+            vC.Dependencies.Add(vD);
+            graph.Vertices.Add(vA);
+            graph.Vertices.Add(vB);
+            graph.Vertices.Add(vC);
+            graph.Vertices.Add(vD);
+            var detector = new CycleDetector<int>();
+            var cycles = detector.DetectCycle(graph);
+            Assert.AreEqual(2, cycles.Count);
+            Assert.AreEqual(1, cycles.Count(c => c.Count == 3));
+            Assert.AreEqual(1, cycles.Count(c => c.Count == 1));
+            Assert.IsTrue(cycles.Single(c => c.Count == 1).Single() == vD);
+        }
     }
 }
