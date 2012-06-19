@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CycleDetection.Tests
+namespace StronglyConnectedComponents.Tests
 {
     [TestClass]
     public class GraphTests
@@ -13,7 +13,7 @@ namespace CycleDetection.Tests
         public void EmptyGraph()
         {
             var graph = new List<Vertex<int>>();
-            var detector = new CycleDetector<int>();
+            var detector = new StronglyConnectedComponentFinder<int>();
             var cycles = detector.DetectCycle(graph);
             Assert.AreEqual(0, cycles.Count);
         }
@@ -23,10 +23,11 @@ namespace CycleDetection.Tests
         {
             var graph = new List<Vertex<int>>();
             graph.Add(new Vertex<int>(1));
-            var detector = new CycleDetector<int>();
-            var cycles = detector.DetectCycle(graph);
-            Assert.AreEqual(1, cycles.Count);
-            Assert.IsTrue(cycles.All(c => c.Count == 1));
+            var detector = new StronglyConnectedComponentFinder<int>();
+            var components = detector.DetectCycle(graph);
+            Assert.AreEqual(1, components.Count);
+            Assert.AreEqual(1, components.IndependentComponents().Count());
+            Assert.AreEqual(0, components.Cycles().Count());
         }
 
         [TestMethod]
@@ -38,10 +39,11 @@ namespace CycleDetection.Tests
             vA.Dependencies.Add(vB);
             graph.Add(vA);
             graph.Add(vB);
-            var detector = new CycleDetector<int>();
-            var cycles = detector.DetectCycle(graph);
-            Assert.AreEqual(2, cycles.Count);
-            Assert.IsTrue(cycles.All(c => c.Count == 1));
+            var detector = new StronglyConnectedComponentFinder<int>();
+            var components = detector.DetectCycle(graph);
+            Assert.AreEqual(2, components.Count);
+            Assert.AreEqual(2, components.IndependentComponents().Count());
+            Assert.AreEqual(0, components.Cycles().Count());
         }
 
         [TestMethod]
@@ -56,10 +58,11 @@ namespace CycleDetection.Tests
             graph.Add(vA);
             graph.Add(vB);
             graph.Add(vC);
-            var detector = new CycleDetector<int>();
-            var cycles = detector.DetectCycle(graph);
-            Assert.AreEqual(3, cycles.Count);
-            Assert.IsTrue(cycles.All(c => c.Count == 1));
+            var detector = new StronglyConnectedComponentFinder<int>();
+            var components = detector.DetectCycle(graph);
+            Assert.AreEqual(3, components.Count);
+            Assert.AreEqual(3, components.IndependentComponents().Count());
+            Assert.AreEqual(0, components.Cycles().Count());
         }
 
         [TestMethod]
@@ -72,10 +75,12 @@ namespace CycleDetection.Tests
             vB.Dependencies.Add(vA);
             graph.Add(vA);
             graph.Add(vB);
-            var detector = new CycleDetector<int>();
-            var cycles = detector.DetectCycle(graph);
-            Assert.AreEqual(1, cycles.Count);
-            Assert.IsTrue(cycles.All(c => c.Count == 2));
+            var detector = new StronglyConnectedComponentFinder<int>();
+            var components = detector.DetectCycle(graph);
+            Assert.AreEqual(1, components.Count);
+            Assert.AreEqual(0, components.IndependentComponents().Count());
+            Assert.AreEqual(1, components.Cycles().Count());
+            Assert.AreEqual(2, components.First().Count);
         }
 
         [TestMethod]
@@ -91,10 +96,12 @@ namespace CycleDetection.Tests
             graph.Add(vA);
             graph.Add(vB);
             graph.Add(vC);
-            var detector = new CycleDetector<int>();
-            var cycles = detector.DetectCycle(graph);
-            Assert.AreEqual(1, cycles.Count);
-            Assert.IsTrue(cycles.All(c => c.Count == 3));
+            var detector = new StronglyConnectedComponentFinder<int>();
+            var components = detector.DetectCycle(graph);
+            Assert.AreEqual(1, components.Count);
+            Assert.AreEqual(0, components.IndependentComponents().Count());
+            Assert.AreEqual(1, components.Cycles().Count());
+            Assert.AreEqual(3, components.Single().Count);
         }
 
         [TestMethod]
@@ -121,10 +128,12 @@ namespace CycleDetection.Tests
             graph.Add(vB2);
             graph.Add(vC2);
 
-            var detector = new CycleDetector<int>();
-            var cycles = detector.DetectCycle(graph);
-            Assert.AreEqual(2, cycles.Count);
-            Assert.IsTrue(cycles.All(c => c.Count == 3));
+            var detector = new StronglyConnectedComponentFinder<int>();
+            var components = detector.DetectCycle(graph);
+            Assert.AreEqual(2, components.Count);
+            Assert.AreEqual(0, components.IndependentComponents().Count());
+            Assert.AreEqual(2, components.Cycles().Count());
+            Assert.IsTrue(components.All(c => c.Count == 3));
         }
 
         [TestMethod]
@@ -143,12 +152,14 @@ namespace CycleDetection.Tests
             graph.Add(vB);
             graph.Add(vC);
             graph.Add(vD);
-            var detector = new CycleDetector<int>();
-            var cycles = detector.DetectCycle(graph);
-            Assert.AreEqual(2, cycles.Count);
-            Assert.AreEqual(1, cycles.Count(c => c.Count == 3));
-            Assert.AreEqual(1, cycles.Count(c => c.Count == 1));
-            Assert.IsTrue(cycles.Single(c => c.Count == 1).Single() == vD);
+            var detector = new StronglyConnectedComponentFinder<int>();
+            var components = detector.DetectCycle(graph);
+            Assert.AreEqual(2, components.Count);
+            Assert.AreEqual(1, components.IndependentComponents().Count());
+            Assert.AreEqual(1, components.Cycles().Count());
+            Assert.AreEqual(1, components.Count(c => c.Count == 3));
+            Assert.AreEqual(1, components.Count(c => c.Count == 1));
+            Assert.IsTrue(components.Single(c => c.Count == 1).Single() == vD);
         }
     }
 }

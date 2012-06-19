@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CycleDetection
+namespace StronglyConnectedComponents
 {
     /// <summary>
     /// Implementation of the Tarjan stronly connected components algorithm.
     /// </summary>
     /// <seealso cref="http://en.wikipedia.org/wiki/Tarjan's_strongly_connected_components_algorithm"/>
     /// <seealso cref="http://stackoverflow.com/questions/261573/best-algorithm-for-detecting-cycles-in-a-directed-graph"/>
-    public class CycleDetector<T>
+    public class StronglyConnectedComponentFinder<T>
     {
-        private List<List<Vertex<T>>> stronglyConnectedComponents;
+        private StronglyConnectedComponentList<T> stronglyConnectedComponents;
         private Stack<Vertex<T>> stack;
         private int index;
 
@@ -21,9 +21,9 @@ namespace CycleDetection
         /// </summary>
         /// <param name="graph">Graph to detect cycles within.</param>
         /// <returns>Set of strongly connected components (sets of vertices)</returns>
-        public List<List<Vertex<T>>> DetectCycle(IEnumerable<Vertex<T>> graph)
+        public StronglyConnectedComponentList<T> DetectCycle(IEnumerable<Vertex<T>> graph)
         {
-            stronglyConnectedComponents = new List<List<Vertex<T>>>();
+            stronglyConnectedComponents = new StronglyConnectedComponentList<T>();
             index = 0;
             stack = new Stack<Vertex<T>>();
             foreach (var v in graph)
@@ -58,7 +58,7 @@ namespace CycleDetection
 
             if (v.LowLink == v.Index)
             {
-                List<Vertex<T>> scc = new List<Vertex<T>>();
+                var scc = new StronglyConnectedComponent<T>();
                 Vertex<T> w;
                 do
                 {

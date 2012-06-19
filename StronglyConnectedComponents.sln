@@ -1,21 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CycleDetection", "CycleDetection\CycleDetection.csproj", "{E387991E-EE65-442C-AB2A-4EA35A7EB83B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StronglyConnectedComponents", "StronglyConnectedComponents\StronglyConnectedComponents.csproj", "{E387991E-EE65-442C-AB2A-4EA35A7EB83B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC797A57-070B-4A85-85C1-E17B369DF7D9}"
 	ProjectSection(SolutionItems) = preProject
-		CycleDetection.vsmdi = CycleDetection.vsmdi
 		Local.testsettings = Local.testsettings
 		README.markdown = README.markdown
+		StronglyConnectedComponents.vsmdi = StronglyConnectedComponents.vsmdi
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CycleDetectionTests", "CycleDetectionTests\CycleDetectionTests.csproj", "{1D0BC1E5-8226-4283-A224-3043FD17BCB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StronglyConnectedComponentsTests", "StronglyConnectedComponentsTests\StronglyConnectedComponentsTests.csproj", "{1D0BC1E5-8226-4283-A224-3043FD17BCB2}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = CycleDetection.vsmdi
+		CategoryFile = StronglyConnectedComponents.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
