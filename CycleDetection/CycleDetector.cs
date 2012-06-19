@@ -21,12 +21,12 @@ namespace CycleDetection
         /// </summary>
         /// <param name="graph">Graph to detect cycles within.</param>
         /// <returns>Set of strongly connected components (sets of vertices)</returns>
-        public List<List<Vertex<T>>> DetectCycle(Graph<T> graph)
+        public List<List<Vertex<T>>> DetectCycle(IEnumerable<Vertex<T>> graph)
         {
             stronglyConnectedComponents = new List<List<Vertex<T>>>();
             index = 0;
             stack = new Stack<Vertex<T>>();
-            foreach (var v in graph.Vertices)
+            foreach (var v in graph)
             {
                 if (v.Index < 0)
                 {
