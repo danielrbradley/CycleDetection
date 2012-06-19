@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CycleDetection")]
-[assembly: AssemblyDescription("Graph Cycle Detection Algorithm in C#")]
+[assembly: AssemblyTitle("StronglyConnectedComponents")]
+[assembly: AssemblyDescription("Strongly Connected Component Detection Algorithm in C#")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("CycleDetection")]
+[assembly: AssemblyProduct("StronglyConnectedComponents")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

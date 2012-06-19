@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StronglyConnectedComponents</RootNamespace>
-    <AssemblyName>CycleDetection</AssemblyName>
+    <AssemblyName>StronglyConnectedComponents</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
